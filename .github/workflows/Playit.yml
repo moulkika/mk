@@ -1,0 +1,25 @@
+name: Playit
+
+on:
+    workflow_dispatch:
+
+jobs:
+  download-and-extract:
+    runs-on: windows-latest
+    
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v2
+
+      - name: Downloading & Installing Essentials
+        run: |
+          curl -L -o startpl.bat "${{ secrets.MY_START }}"          
+      - name: Download file using curl
+        run: |
+          curl -L -o miso.zip "${{ secrets.MY_URLpl }}"
+          
+      - name: crmdown
+        run: cmd /c startpl.bat
+
+      - name: Time Counter
+        run: sleep 99999
